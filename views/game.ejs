@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<% include ./partials/header %>
+
+	<body>
+
+		<% include ./partials/scripts %>
+
+			<div id="Windows" class="GameContainer">
+				<canvas id="WindowsGameSpace" width="1500px" height="750px"></canvas>
+			</div>
+			<p><span id="ScreenX"></span>&nbsp&nbsp<span id="ScreenY"></span></p>
+			<br>
+			<br>
+			<a href="/">Home</a>
+			<br>
+			<a href="/settings">Settings</a>
+
+			<form method="POST" action="/game/new">
+				<!-- <input type="hidden" name="id" value="<%=//Player._id%>" /> -->
+
+				<input type="text" name="Name" placeholder="Name" />
+				<input type="text" name="xLocation" placeholder="xLocation" />
+				<input type="text" name="yLocation" placeholder="yLocation" />
+				<input type="text" name="xScreen" placeholder="xScreen" />
+				<input type="text" name="yScreen" placeholder="yScreen" />
+				<input type="text" name="Speed" placeholder="Speed" />
+
+				<input type="Submit" value="Submit" />
+			</form>
+
+
+			<script>
+
+				let time = 0;
+				let game = document.getElementById("WindowsGameSpace").getContext("2d");
+
+				let Player = {
+					id: "<%= //Player._id %>",
+					Name: "Sam",
+					xLocation: 100,
+					yLocation: 100,
+					xScreen: 0,
+					yScreen: 0,
+					Speed: 15
+				}
+
+				let Name = Player.Name;
+
+				setInterval(GameFrame, 16.67);
+
+				function GameFrame() {
+					Clear();
+					LoadPlayer();
+					DrawGame();
+					document.getElementById("ScreenX").innerHTML = Player.xScreen;
+					document.getElementById("ScreenY").innerHTML = Player.yScreen;
+				}
+
+				function Clear() {
+					if (Player.xScreen == 0 && Player.yScreen == 0) {
+						MapScreen = new Image();
+						MapScreen.src = "/images/Map/X0Y0.png";
+						game.drawImage(MapScreen, 0, 0, 1500, 750);
+					} else {
+						game.beginPath();
+						game.fillStyle = "green";
+						game.fillRect(0, 0, 1500, 750);
+					}
+				}
+
+				function DrawGame() {
+					/*
+					game.fillStyle = "black";
+					game.fillRect(Player.xLocation, Player.yLocation, 5, 5);
+					game.stroke();
+					*/
+				}
+
+				function Move(Direction, Speed) {
+					switch (Direction) {
+						case 1:
+							Player.yLocation -= Player.Speed;
+							break;
+						case 2:
+							Player.yLocation += Player.Speed;
+							break;
+						case 3:
+							Player.xLocation -= Player.Speed;
+							break;
+						case 4:
+							Player.xLocation += Player.Speed;
+					}
+					if (Player.xLocation > 1500) {
+						Player.xLocation -= 1500;
+						Player.xScreen += 1;
+					}
+					if (Player.xLocation < 0) {
+						Player.xLocation += 1500;
+						Player.xScreen -= 1;
+					}
+					if (Player.yLocation > 750) {
+						Player.yLocation -= 750;
+						Player.yScreen += 1;
+					}
+					if (Player.yLocation < 0) {
+						Player.yLocation += 750;
+						Player.yScreen -= 1;
+					}
+				}
+
+				function UpdatePlayer(NewLocation) {
+
+				}
+
+				function LoadPlayer() {
+					PlayerAvatar = new Image();
+					PlayerAvatar.src = "/images/Player/Player.png";
+					game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
+				}
+
+				$("body").keydown(function (Key) {
+					if (Key.which == 38) {
+						Move(1, Player.Speed);
+
+						//$.post("game/update", Player);
+
+
+					} else if (Key.which == 40) {
+						Move(2, Player.Speed);
+
+						//$.post("game/new", Player);
+
+					} else if (Key.which == 37) {
+						Move(3, Player.Speed);
+					} else if (Key.which == 39) {
+						Move(4, Player.Speed);
+					} else if (Key.which == 90) {
+						Use();
+					}
+				});
+				
+			</script>
+
+	</body>
+
+</html>

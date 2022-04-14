@@ -1,0 +1,13 @@
+body {
+  background-color: rgb(48, 180, 114) /*!important; */
+}
+
+.GameContainer {
+  margin: auto;
+  width: 1500px;
+}
+
+#WindowsGameSpace {
+  border:5px solid #000000;
+  margin-top: 3%;
+}
