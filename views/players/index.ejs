@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<% include ../partials/header %>
+
+    <body>
+        <% include ../partials/navbar %>
+            <div class="container">
+                <h1>Players</h1>
+                <table class="table table-bordered table-striped">
+                    <tr>
+
+                    <td>
+                        Username
+                    </td>
+                    <td>
+                        Local Location
+                    </td>
+                    <td>
+                        World Location
+                    </td>
+                    <td>
+                        Speed
+                    </td>
+                    <td>
+                        
+                    </td>
+                </tr>
+
+                    <% for (let x=0; x < players.length; x++) { %>
+                        <tr>
+                            <td>
+                                <%= players[x].username %>
+                            </td>
+                            <td>
+                                <%= players[x].player.xLocation %>, <%= players[x].player.yLocation %>
+                            </td>
+                            <td>
+                                <%= players[x].player.xScreen %>, <%= players[x].player.yScreen %>
+                            </td>
+                            <td>
+                                <%= players[x].player.Speed %>
+                            </td>
+                            <td>
+                                <%=  %>
+                            </td>
+                        </tr>
+                        <% } %>
+                </table>
+            </div>
+
+    </body>
+
+</html>

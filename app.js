@@ -9,6 +9,7 @@ var passport = require('passport');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 
+var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var loginRouter = require('./routes/login');
 var gameRouter = require('./routes/game');
@@ -53,6 +54,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/', indexRouter);
 app.use('/', loginRouter);
 app.use('/users', usersRouter);
 app.use('/game', gameRouter);
