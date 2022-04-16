@@ -10,7 +10,7 @@
 
 
                 <li class="nav-item">
-                    <a class="nav-link" href="">Game</a>
+                    <a class="nav-link" href="/game">Game</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="">Settings</a>
@@ -18,11 +18,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="">Logout</a>
                 </li>
+                <% if (locals.user.username === "Sam") { %>
+                <li>
+                    <a class="nav-link" href="/users">Users</a>
+                </li>
+                <% } %>
 
 
             </ul>
         </div>
     </nav>
-<% } else { %>
-    <p>You are not logged in</p>
 <% } %>

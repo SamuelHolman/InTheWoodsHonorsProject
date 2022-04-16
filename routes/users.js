@@ -13,4 +13,4 @@ router.post('/update', authorizeMiddleware.ensureAuthorized, userController.post
 
 router.get('/delete', authorizeMiddleware.ensureAuthorized, userController.getDeleteUser);
 
-module.exports = router; 
+module.exports = router;  

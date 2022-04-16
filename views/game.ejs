@@ -37,13 +37,13 @@
 				let game = document.getElementById("WindowsGameSpace").getContext("2d");
 
 				let Player = {
-					id: "<%= //Player._id %>",
-					Name: "Sam",
-					xLocation: 100,
-					yLocation: 100,
-					xScreen: 0,
-					yScreen: 0,
-					Speed: 15
+					id: "<%= locals.user._id %>",
+					Name: "<%= locals.user.username %>",
+					xLocation: <%= locals.user.player.xLocation %>,
+					yLocation: <%= locals.user.player.yLocation %>,
+					xScreen: <%= locals.user.player.xScreen %>,
+					yScreen: <%= locals.user.player.yScreen %>,
+					Speed: <%= locals.user.player.Speed %>
 				}
 
 				let Name = Player.Name;
