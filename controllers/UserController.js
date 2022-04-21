@@ -43,27 +43,6 @@ exports.getUpdateUser = function (req, res) {
     });
 };
 
-exports.postUpdateUserInGame = function (req, res) {
-    const updateData = {
-        player: {
-            xLocation: req.body.player.xLocation,
-            yLocation: req.body.player.yLocation,
-            xScreen: req.body.player.xScreen,
-            yScreen: req.body.player.yScreen,
-            Speed: req.body.player.Speed
-        }
-    };
-
-    User.findOneAndUpdate({ _id: req.body.id }, updateData, function (err, data) {
-        if (err) {
-            // handle error
-            console.log(err);
-        } else {
-            console.log("data updated");
-        }
-    });
-}
-
 exports.postUpdateUser = function (req, res) {
 
     const updateData = {

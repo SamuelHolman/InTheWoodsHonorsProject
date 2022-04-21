@@ -11,11 +11,20 @@
 					<canvas id="WindowsGameSpace" width="1500px" height="750px"></canvas>
 				</div>
 				<p><span id="ScreenX"></span>&nbsp&nbsp<span id="ScreenY"></span></p>
+				<p>Player Count: <span id="PlayerCount"></span></p>
+				<p><span id="xLocation"></span>&nbsp&nbsp<span id="yLocation"></span>&nbsp&nbsp&nbsp&nbsp<span
+						id="Direction"></span></p>
 
 				<script>
 
 					let time = 0;
 					let game = document.getElementById("WindowsGameSpace").getContext("2d");
+					let PlayerList = [];
+					let ThroughTestPlayers = true;
+					let ThroughTestData = true;
+					let WallCheck = [0, 1, 2, 3, 4, 5, 6];
+					let Delay = 16.67;
+					let TimerCheck = null;
 
 					let Player = {
 						id: "<%= locals.user._id %>",
@@ -24,19 +33,74 @@
 						yLocation: <%= locals.user.player.yLocation %>,
 						xScreen: <%= locals.user.player.xScreen %>,
 						yScreen: <%= locals.user.player.yScreen %>,
-						Speed: <%= locals.user.player.Speed %>
-				}
+						Speed: <%= locals.user.player.Speed %>,
+						Direction: "<%= locals.user.player.Direction %>",
+						Movement: {
+							Upward: <%= locals.user.player.Movement.Upward %>,
+							Downward: <%= locals.user.player.Movement.Downward %>,
+							Left: <%= locals.user.player.Movement.Left %>,
+							Right: <%= locals.user.player.Movement.Right %>,
+						}
+					}
 
-					let Name = Player.Name;
+					setInterval(FindPlayers, 20);
+					setInterval(UploadPlayer, 20);
 
-					setInterval(GameFrame, 16.67);
+					window.requestAnimationFrame(GameFrame);
 
 					function GameFrame() {
-						Clear();
+						MovementCheck();
 						LoadPlayer();
-						DrawGame();
+						LoadPlayers();
 						document.getElementById("ScreenX").innerHTML = Player.xScreen;
 						document.getElementById("ScreenY").innerHTML = Player.yScreen;
+
+						document.getElementById("xLocation").innerHTML = Player.xLocation;
+						document.getElementById("yLocation").innerHTML = Player.yLocation;
+
+						document.getElementById("Direction").innerHTML = Player.Direction;
+						window.requestAnimationFrame(GameFrame);
+					}
+
+					function LoadPlayers() {
+						document.getElementById("PlayerCount").innerHTML = PlayerList.length;
+						
+
+						for (let i = 0; i < PlayerList.length; i++) {
+							MultiplayerAvatar = new Image();
+							MultiplayerAvatar.onload = function () {
+								game.drawImage(MultiplayerAvatar, PlayerList[i].xLocation - (52 / 2), PlayerList[i].yLocation - (75 / 2), 52, 75);
+								game.font = '12px Arial';
+								game.fillStyle = "black";
+								let textlength = game.measureText(PlayerList[i].Name);
+								game.fillText(PlayerList[i].Name, PlayerList[i].xLocation - (textlength.width / 2) - 9, PlayerList[i].yLocation - (75 / 2));
+							}
+
+							if (PlayerList[i].Direction == "Right") {
+								MultiplayerAvatar.src = "/images/Player/Player.png";
+							} else if (PlayerList[i].Direction == "Left") {
+								MultiplayerAvatar.src = "/images/Player/PlayerLeft.png";
+							}
+						}
+
+					}
+
+					function LoadPlayer() {
+						PlayerAvatar = new Image();
+						PlayerAvatar.onload = function () {
+							Clear();
+							game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
+							game.font = '12px Arial';
+							game.fillStyle = "black";
+							let textlength = game.measureText(Player.Name);
+							game.fillText(Player.Name, Player.xLocation - (textlength.width / 2) - 9, Player.yLocation - (75 / 2));
+						}
+
+						if (Player.Direction == "Right") {
+							PlayerAvatar.src = "/images/Player/Player.png";
+						} else if (Player.Direction == "Left") {
+							PlayerAvatar.src = "/images/Player/PlayerLeft.png";
+						}
 					}
 
 					function Clear() {
@@ -51,27 +115,116 @@
 						}
 					}
 
-					function DrawGame() {
-						/*
-						game.fillStyle = "black";
-						game.fillRect(Player.xLocation, Player.yLocation, 5, 5);
-						game.stroke();
-						*/
+					function FindPlayers() {
+						if (ThroughTestPlayers == true) {
+							ThroughTestPlayers = false;
+							$.get("game/renderPlayers", { Name: Player.Name, xScreen: Player.xScreen, yScreen: Player.yScreen }, function (Players) {
+								PlayerList = [];
+								for (let i = 0; i < Players.length; i++) {
+									let PlayerCharacter = new TempCharacter(
+										Players[i].username,
+										Players[i].player.xLocation,
+										Players[i].player.yLocation,
+										Players[i].player.Speed,
+										Players[i].player.Direction
+									);
+									PlayerList.push(PlayerCharacter);
+								}
+								ThroughTestPlayers = true;
+							});
+						}
 					}
 
-					function Move(Direction, Speed) {
+					function TempCharacter(Name, xLocation, yLocation, Speed, Direction) {
+						this.Name = Name;
+						this.xLocation = xLocation;
+						this.yLocation = yLocation;
+						this.Speed = Speed;
+						this.Direction = Direction;
+					}
+
+					function UploadPlayer() {
+						if (ThroughTestData == true) {
+							ThroughTestData = false;
+							$.ajax({
+								url: 'game/updatePlayer',
+								type: 'PUT',
+								data: {
+									id: Player.id,
+									Username: Player.Name,
+									xScreen: Player.xScreen,
+									yScreen: Player.yScreen,
+									xLocation: Player.xLocation,
+									yLocation: Player.yLocation,
+									Speed: Player.Speed,
+									Direction: Player.Direction,
+									Movement: {
+										Upward: Player.Movement.Upward,
+										Downward: Player.Movement.Downward,
+										Left: Player.Movement.Left,
+										Right: Player.Movement.Right
+									}
+								},
+								success: function (result) {
+									ThroughTestData = true;
+								}
+							});
+						}
+					}
+
+					function DrawGame() {
+
+					}
+
+					function MovementCheck() {
+						if (Player.yLocation <= 55 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 0) {
+							Player.Movement.Upward = false;
+						} else {
+							Player.Movement.Upward = true;
+						}
+
+						if (Player.yLocation >= 685 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 6) {
+							Player.Movement.Downward = false;
+						} else {
+							Player.Movement.Downward = true;
+						}
+
+						if (Player.xLocation <= 55 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 0) {
+							Player.Movement.Left = false;
+						} else {
+							Player.Movement.Left = true;
+						}
+
+						if (Player.xLocation >= 1450 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 6) {
+							Player.Movement.Right = false;
+						} else {
+							Player.Movement.Right = true;
+						}
+					}
+
+					function Move(Direction) {
 						switch (Direction) {
 							case 1:
-								Player.yLocation -= Player.Speed;
+								if (Player.Movement.Upward == true) {
+									Player.yLocation -= Player.Speed;
+								}
 								break;
 							case 2:
-								Player.yLocation += Player.Speed;
+								if (Player.Movement.Downward == true) {
+									Player.yLocation += Player.Speed;
+								}
 								break;
 							case 3:
-								Player.xLocation -= Player.Speed;
+								if (Player.Movement.Left == true) {
+									Player.xLocation -= Player.Speed;
+								}
+								Player.Direction = "Left";
 								break;
 							case 4:
-								Player.xLocation += Player.Speed;
+								if (Player.Movement.Right == true) {
+									Player.xLocation += Player.Speed;
+								}
+								Player.Direction = "Right";
 						}
 						if (Player.xLocation > 1500) {
 							Player.xLocation -= 1500;
@@ -91,36 +244,41 @@
 						}
 					}
 
-					function UpdatePlayer(NewLocation) {
-
-					}
-
-					function LoadPlayer() {
-						PlayerAvatar = new Image();
-						PlayerAvatar.src = "/images/Player/Player.png";
-						game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
-						game.font = '12px Arial';
-						game.fillStyle = "black";
-						let textlength = game.measureText(Player.Name);
-						game.fillText(Player.Name, Player.xLocation - (textlength.width / 2) - 9, Player.yLocation - (75 / 2));
-					}
-
 					$("body").keydown(function (Key) {
 						if (Key.which == 38) {
-							Move(1, Player.Speed);
-
-							//$.post("game/update", Player);
-
-
+							if (TimerCheck == null) {
+								TimerCheck = setInterval(Move, Delay, 1);
+							}
 						} else if (Key.which == 40) {
-							Move(2, Player.Speed);
-
-							//$.post("game/new", Player);
-
+							if (TimerCheck == null) {
+								TimerCheck = setInterval(Move, Delay, 2);
+							}
 						} else if (Key.which == 37) {
-							Move(3, Player.Speed);
+							if (TimerCheck == null) {
+								TimerCheck = setInterval(Move, Delay, 3);
+							}
 						} else if (Key.which == 39) {
-							Move(4, Player.Speed);
+							if (TimerCheck == null) {
+								TimerCheck = setInterval(Move, Delay, 4);
+							}
+						} else if (Key.which == 90) {
+							Use();
+						}
+					});
+
+					$("body").keyup(function (Key) {
+						if (Key.which == 38) {
+							clearInterval(TimerCheck);
+							TimerCheck = null;
+						} else if (Key.which == 40) {
+							clearInterval(TimerCheck);
+							TimerCheck = null;
+						} else if (Key.which == 37) {
+							clearInterval(TimerCheck);
+							TimerCheck = null;
+						} else if (Key.which == 39) {
+							clearInterval(TimerCheck);
+							TimerCheck = null;
 						} else if (Key.which == 90) {
 							Use();
 						}

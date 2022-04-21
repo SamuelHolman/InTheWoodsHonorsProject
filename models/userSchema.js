@@ -11,7 +11,15 @@ const userSchema = new mongoose.Schema(
             yLocation: { type: Number, required: true, default: 100 },
             xScreen: { type: Number, required: true, default: 0 },
             yScreen: { type: Number, required: true, default: 0 },
-            Speed: { type: Number, required: true, default: 15 }
+            Speed: { type: Number, required: true, default: 5 },
+            Direction: { type: String, default: "Right" },
+            Model: { type: String },
+            Movement: {
+                Upward: { type: Boolean, default: true },
+                Downward: { type: Boolean, default: true },
+                Left: { type: Boolean, default: true },
+                Right: { type: Boolean, default: true }
+            }
         }
     },
     { strict: false }
