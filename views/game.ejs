@@ -24,7 +24,10 @@
 					let ThroughTestData = true;
 					let WallCheck = [0, 1, 2, 3, 4, 5, 6];
 					let Delay = 16.67;
-					let TimerCheck = null;
+					let TimerCheckUp = null;
+					let TimerCheckDown = null;
+					let TimerCheckLeft = null;
+					let TimerCheckRight = null;
 
 					let Player = {
 						id: "<%= locals.user._id %>",
@@ -45,6 +48,13 @@
 
 					setInterval(FindPlayers, 20);
 					setInterval(UploadPlayer, 20);
+
+					/*
+					Create an array for the players facing right and an array for the players facing left
+					then once both arrays are made, render the right facing players with one image object,
+					then render the left facing players with another, seperate image object
+					*/
+
 
 					window.requestAnimationFrame(GameFrame);
 
@@ -78,6 +88,7 @@
 
 							if (PlayerList[i].Direction == "Right") {
 								MultiplayerAvatar.src = "/images/Player/Player.png";
+								//console.log(JSON.stringify(PlayerList[i]));
 							} else if (PlayerList[i].Direction == "Left") {
 								MultiplayerAvatar.src = "/images/Player/PlayerLeft.png";
 							}
@@ -128,6 +139,7 @@
 										Players[i].player.Speed,
 										Players[i].player.Direction
 									);
+									console.log(JSON.stringify(Players[i]));
 									PlayerList.push(PlayerCharacter);
 								}
 								ThroughTestPlayers = true;
@@ -246,20 +258,20 @@
 
 					$("body").keydown(function (Key) {
 						if (Key.which == 38) {
-							if (TimerCheck == null) {
-								TimerCheck = setInterval(Move, Delay, 1);
+							if (TimerCheckUp == null) {
+								TimerCheckUp = setInterval(Move, Delay, 1);
 							}
 						} else if (Key.which == 40) {
-							if (TimerCheck == null) {
-								TimerCheck = setInterval(Move, Delay, 2);
+							if (TimerCheckDown == null) {
+								TimerCheckDown = setInterval(Move, Delay, 2);
 							}
 						} else if (Key.which == 37) {
-							if (TimerCheck == null) {
-								TimerCheck = setInterval(Move, Delay, 3);
+							if (TimerCheckLeft == null) {
+								TimerCheckLeft = setInterval(Move, Delay, 3);
 							}
 						} else if (Key.which == 39) {
-							if (TimerCheck == null) {
-								TimerCheck = setInterval(Move, Delay, 4);
+							if (TimerCheckRight == null) {
+								TimerCheckRight = setInterval(Move, Delay, 4);
 							}
 						} else if (Key.which == 90) {
 							Use();
@@ -268,17 +280,17 @@
 
 					$("body").keyup(function (Key) {
 						if (Key.which == 38) {
-							clearInterval(TimerCheck);
-							TimerCheck = null;
+							clearInterval(TimerCheckUp);
+							TimerCheckUp = null;
 						} else if (Key.which == 40) {
-							clearInterval(TimerCheck);
-							TimerCheck = null;
+							clearInterval(TimerCheckDown);
+							TimerCheckDown = null;
 						} else if (Key.which == 37) {
-							clearInterval(TimerCheck);
-							TimerCheck = null;
+							clearInterval(TimerCheckLeft);
+							TimerCheckLeft = null;
 						} else if (Key.which == 39) {
-							clearInterval(TimerCheck);
-							TimerCheck = null;
+							clearInterval(TimerCheckRight);
+							TimerCheckRight = null;
 						} else if (Key.which == 90) {
 							Use();
 						}
