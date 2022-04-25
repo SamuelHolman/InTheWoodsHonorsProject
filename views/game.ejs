@@ -62,6 +62,7 @@
 						MovementCheck();
 						LoadPlayer();
 						LoadPlayers();
+						RenderBugs();
 						document.getElementById("ScreenX").innerHTML = Player.xScreen;
 						document.getElementById("ScreenY").innerHTML = Player.yScreen;
 
@@ -74,8 +75,6 @@
 
 					function LoadPlayers() {
 						document.getElementById("PlayerCount").innerHTML = PlayerList.length;
-						
-
 						for (let i = 0; i < PlayerList.length; i++) {
 							MultiplayerAvatar = new Image();
 							MultiplayerAvatar.onload = function () {
@@ -139,7 +138,7 @@
 										Players[i].player.Speed,
 										Players[i].player.Direction
 									);
-									console.log(JSON.stringify(Players[i]));
+									//console.log(JSON.stringify(Players[i]));
 									PlayerList.push(PlayerCharacter);
 								}
 								ThroughTestPlayers = true;
@@ -184,8 +183,92 @@
 						}
 					}
 
-					function DrawGame() {
+					const BugMaxCount = 3;
+					let BugCaughtCount = 0;
+					let xBug = [];
+					let yBug = [];
+					let BugType = [];
+					let Worm = [false, false, false];
+					let Bee = [false, false, false];
+					let Caterpillar = [false, false, false];
+					let CaterpillarState = [0, 0, 0];
+					let Skater = [false, false, false];
+					let BugCaughtCheck = [false, false, false];
 
+					SummonBugs();
+
+					function SummonBugs() {
+						BugCaughtCount = 0;
+						BugCaughtCheck = [false, false, false];
+						for (let i = 0; i < BugMaxCount; i++) {
+							BugType[i] = Math.floor(Math.random() * 4);
+							xBug[i] = GenerateRandomNumber(200, 1300);
+							yBug[i] = GenerateRandomNumber(150, 600);
+							//Skater Check Goes Here
+							if (BugType[i] == 0) {
+								Worm[i] = true;
+							} else if (BugType[i] == 1) {
+								Bee[i] = true;
+							} else if (BugType[i] == 2) {
+								Caterpillar[i] = true;
+							} else if (BugType[i] == 3) {
+								Skater[i] = true;
+							}
+						}
+					}
+
+					function RenderBugs() {
+						for (let i = 0; i < 3; i++) {
+							WormImage = new Image();
+							// BeeImage.onload = function () {
+								// game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
+							// }
+							if (BugType[i] == 1) {
+								WormImage.src = "/images/Player/Player.png";
+								game.drawImage(WormImage, xBug[i], yBug[i], 15, 15);
+							}
+						}
+.
+						for (let i = 0; i < 3; i++) {
+							BeeImage = new Image();
+							// BeeImage.onload = function () {
+								// game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
+							// }
+							if (BugType[i] == 1) {
+								BeeImage.src = "/images/Player/Player.png";
+								game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
+							}
+						}
+
+							// BeeImage = new Image();
+							// BeeImage.onload = function () {
+							// 	game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
+							// }
+
+							// CaterPillarImage = new Image();
+							// CaterPillarImage.onload = function () {
+							// 	game.drawImage(CaterPillarImage, xBug[i], yBug[i], 15, 15);
+							// }
+
+							// SkaterImage = new Image();
+							// SkaterImage.onload = function () {
+							// 	game.drawImage(SkaterImage, xBug[i], yBug[i], 15, 15);
+							// }
+
+							//  else if (BugType[i] == 1) {
+							// 	BeeImage.src = "/images/Player/Player.png";
+							// } else if (BugType[i] == 2) {
+							// 	CaterPillarImage.src = "/images/Player/Player.png";
+							// } else if (BugType[i] == 3) {
+							// 	SkaterImage.src = "/images/Player/Player.png";
+							// }
+						
+						console.log(BugType[0] + "" + BugType[1] + "" + BugType[2]);
+						console.log(xBug[0] + "," + yBug[0] + " " + xBug[1] + "," + yBug[1] + " " + xBug[2] + "," + yBug[2]);
+					}
+
+					function GenerateRandomNumber(min, max) {
+						return Math.floor(Math.random() * (max - min)) + min;
 					}
 
 					function MovementCheck() {
