@@ -62,7 +62,6 @@
 						MovementCheck();
 						LoadPlayer();
 						LoadPlayers();
-						RenderBugs();
 						document.getElementById("ScreenX").innerHTML = Player.xScreen;
 						document.getElementById("ScreenY").innerHTML = Player.yScreen;
 
@@ -84,21 +83,15 @@
 								let textlength = game.measureText(PlayerList[i].Name);
 								game.fillText(PlayerList[i].Name, PlayerList[i].xLocation - (textlength.width / 2) - 9, PlayerList[i].yLocation - (75 / 2));
 							}
-
-							if (PlayerList[i].Direction == "Right") {
-								MultiplayerAvatar.src = "/images/Player/Player.png";
-								//console.log(JSON.stringify(PlayerList[i]));
-							} else if (PlayerList[i].Direction == "Left") {
-								MultiplayerAvatar.src = "/images/Player/PlayerLeft.png";
-							}
+							MultiplayerAvatar.src = "/images/Player/Player.png";
 						}
-
 					}
 
 					function LoadPlayer() {
 						PlayerAvatar = new Image();
 						PlayerAvatar.onload = function () {
 							Clear();
+							SummonBugs();
 							game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
 							game.font = '12px Arial';
 							game.fillStyle = "black";
@@ -114,15 +107,111 @@
 					}
 
 					function Clear() {
+						MapScreen = new Image();
 						if (Player.xScreen == 0 && Player.yScreen == 0) {
-							MapScreen = new Image();
 							MapScreen.src = "/images/Map/X0Y0.png";
-							game.drawImage(MapScreen, 0, 0, 1500, 750);
+						} else if (Player.xScreen == 0 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X0Y1.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X0Y2.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X0Y3.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X0Y4.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X0Y5.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X0Y6.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X1Y0.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X1Y1.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X1Y2.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X1Y3.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X1Y4.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X1Y5.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X1Y6.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X2Y0.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X2Y1.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X2Y2.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X2Y3.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X2Y4.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X2Y5.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X2Y6.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X3Y0.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X3Y1.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X3Y2.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X3Y3.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X3Y4.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X3Y5.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X3Y6.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X4Y0.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X4Y1.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X4Y2.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X4Y3.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X4Y4.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X4Y5.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X4Y6.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X5Y0.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X5Y1.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X5Y2.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X5Y3.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X5Y4.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X5Y5.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X5Y6.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 0) {
+							MapScreen.src = "/images/Map/X6Y0.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 1) {
+							MapScreen.src = "/images/Map/X6Y1.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 2) {
+							MapScreen.src = "/images/Map/X6Y2.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 3) {
+							MapScreen.src = "/images/Map/X6Y3.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 4) {
+							MapScreen.src = "/images/Map/X6Y4.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 5) {
+							MapScreen.src = "/images/Map/X6Y5.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 6) {
+							MapScreen.src = "/images/Map/X6Y6.png";
 						} else {
-							game.beginPath();
-							game.fillStyle = "green";
-							game.fillRect(0, 0, 1500, 750);
+							//game.beginPath();
+							//game.fillStyle = "green";
+							//game.fillRect(0, 0, 1500, 750);
 						}
+						game.drawImage(MapScreen, 0, 0, 1500, 750);
 					}
 
 					function FindPlayers() {
@@ -138,7 +227,6 @@
 										Players[i].player.Speed,
 										Players[i].player.Direction
 									);
-									//console.log(JSON.stringify(Players[i]));
 									PlayerList.push(PlayerCharacter);
 								}
 								ThroughTestPlayers = true;
@@ -178,98 +266,551 @@
 								},
 								success: function (result) {
 									ThroughTestData = true;
+								},
+								complete: function (result) {
+									ThroughTestData = true;
 								}
 							});
 						}
 					}
 
-					const BugMaxCount = 3;
-					let BugCaughtCount = 0;
-					let xBug = [];
-					let yBug = [];
-					let BugType = [];
-					let Worm = [false, false, false];
-					let Bee = [false, false, false];
-					let Caterpillar = [false, false, false];
-					let CaterpillarState = [0, 0, 0];
-					let Skater = [false, false, false];
-					let BugCaughtCheck = [false, false, false];
-
 					SummonBugs();
 
 					function SummonBugs() {
-						BugCaughtCount = 0;
-						BugCaughtCheck = [false, false, false];
-						for (let i = 0; i < BugMaxCount; i++) {
-							BugType[i] = Math.floor(Math.random() * 4);
-							xBug[i] = GenerateRandomNumber(200, 1300);
-							yBug[i] = GenerateRandomNumber(150, 600);
-							//Skater Check Goes Here
-							if (BugType[i] == 0) {
-								Worm[i] = true;
-							} else if (BugType[i] == 1) {
-								Bee[i] = true;
-							} else if (BugType[i] == 2) {
-								Caterpillar[i] = true;
-							} else if (BugType[i] == 3) {
-								Skater[i] = true;
+						if (Player.xScreen == 0 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 330, 560, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Millipede", 330, 560 - 5);
 							}
+
+							Bug.src = "/images/Bugs/Millipede.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 55, 585, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Ladybug", 55, 585 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Ladybug.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 440, 365, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Hummingbird", 440, 365 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Hummingbird.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 485, 160, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Yellow Mantis", 485, 160 - 5);
+							}
+
+							Bug.src = "/images/Bugs/FlowerMantisYellow.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 55, 525, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Tropical Fish", 55, 525 - 5);
+							}
+
+							Bug.src = "/images/Bugs/TropicalFish.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 80, 470, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Stingray", 80, 470 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Stingray.png";
+						} else if (Player.xScreen == 0 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 65, 475, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Angler Fish", 65, 475 - 5);
+							}
+
+							Bug.src = "/images/Bugs/AnglerFish.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 540, 215, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Mantis", 540, 215 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Mantis.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 445, 30, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Song Bird", 445, 30 - 5);
+							}
+
+							Bug.src = "/images/Bugs/SongBird.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 460, 5, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Stink Bug", 460, 5 - 5);
+							}
+
+							Bug.src = "/images/Bugs/StinkBug.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 150, 525, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Red Mantis", 150, 525 - 5);
+							}
+
+							Bug.src = "/images/Bugs/FlowerMantisRed.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 595, 35, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Fly", 595, 35 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Fly.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 760, 305, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Lobster", 760, 305 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Lobster.png";
+						} else if (Player.xScreen == 1 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 945, 470, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Captain Cockroach", 945, 470 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Cockroach.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 315, 540, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Wasp", 315, 540 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Wasp.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 195, 195, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Spider", 195, 195 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Spider.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 420, 605, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Ants", 420, 605 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Ants.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 775, 70, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("White Mantis", 775, 70 - 5);
+							}
+
+							Bug.src = "/images/Bugs/FlowerMantisWhite.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 1210, 5, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Lizard", 1210, 5 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Lizard.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 310, 410, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Crawdad", 310, 410 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Crawdad.png";
+						} else if (Player.xScreen == 2 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 880, 215, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Hermit Crab", 880, 215 - 5);
+							}
+
+							Bug.src = "/images/Bugs/HermitCrab.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 1080, 165, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Jumping Spider", 1080, 165 - 5);
+							}
+
+							Bug.src = "/images/Bugs/JumpingSpider.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 315, 505, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Leaf Mantis", 315, 505 - 5);
+							}
+
+							Bug.src = "/images/Bugs/BronzeMantis.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 335, 150, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Caterpillar", 335, 150 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Caterpillar.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 750, 35, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Butteryfly", 750, 35 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Butterfly.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 915, 260, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Mosquito", 915, 260 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Mosquito.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 555, 365, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Newt", 555, 365 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Newt.png";
+						} else if (Player.xScreen == 3 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 215, 600, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Skink", 215, 600 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Skink.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 525, 310, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Queen Bee", 525, 310 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Bee.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 380, 395, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Walking Stick", 380, 395 - 5);
+							}
+
+							Bug.src = "/images/Bugs/WalkingStick.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 800, 270, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Water Strider", 800, 270 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Skater.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 720, 360, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+
+								game.fillText("Termite", 720, 360 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Termite.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 115, 200, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Frog", 115, 200 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Frog.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 165, 480, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Amoeba", 165, 480 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Amoeba.png";
+						} else if (Player.xScreen == 4 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 1040, 265, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Salamander", 1040, 265 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Salamander.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 1355, 120, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Scorpion", 1355, 120 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Scorpion.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 205, 355, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Antlion", 205, 355 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Antlion.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 710, 265, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Mudskip", 710, 265 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Mudskip.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 605, 425, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Turtle", 605, 425 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Turtle.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 555, 330, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Slug", 555, 330 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Slug.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 485, 290, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Firefly", 485, 290 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Firefly.png";
+						} else if (Player.xScreen == 5 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 345, 535, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Snail", 345, 535 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Snail.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 0) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 335, 120, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Khepri", 335, 120 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Khepri.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 1) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 425, 395, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Scarab Beetle", 425, 395 - 5);
+							}
+
+							Bug.src = "/images/Bugs/ScarabBeetle.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 2) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 960, 275, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Beetle", 960, 275 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Beetle.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 3) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 765, 160, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Lightning Bug", 765, 160 - 5);
+							}
+
+							Bug.src = "/images/Bugs/LightningBug.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 4) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 500, 560, 50, 10);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Worm", 500, 560 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Worm/Wormstretched.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 5) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 775, 100, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Moth", 775, 100 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Moth.png";
+						} else if (Player.xScreen == 6 && Player.yScreen == 6) {
+							Bug = new Image();
+							Bug.onload = function () {
+								game.drawImage(Bug, 775, 385, 50, 50);
+								game.font = '12px Arial';
+								game.fillStyle = "white";
+								game.fillText("Dragonfly", 775, 385 - 5);
+							}
+
+							Bug.src = "/images/Bugs/Dragonfly.png";
 						}
 					}
 
-					function RenderBugs() {
-						for (let i = 0; i < 3; i++) {
-							WormImage = new Image();
-							// BeeImage.onload = function () {
-								// game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
-							// }
-							if (BugType[i] == 1) {
-								WormImage.src = "/images/Player/Player.png";
-								game.drawImage(WormImage, xBug[i], yBug[i], 15, 15);
-							}
-						}
-.
-						for (let i = 0; i < 3; i++) {
-							BeeImage = new Image();
-							// BeeImage.onload = function () {
-								// game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
-							// }
-							if (BugType[i] == 1) {
-								BeeImage.src = "/images/Player/Player.png";
-								game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
-							}
-						}
+					function CheckForBugs() {
 
-							// BeeImage = new Image();
-							// BeeImage.onload = function () {
-							// 	game.drawImage(BeeImage, xBug[i], yBug[i], 15, 15);
-							// }
-
-							// CaterPillarImage = new Image();
-							// CaterPillarImage.onload = function () {
-							// 	game.drawImage(CaterPillarImage, xBug[i], yBug[i], 15, 15);
-							// }
-
-							// SkaterImage = new Image();
-							// SkaterImage.onload = function () {
-							// 	game.drawImage(SkaterImage, xBug[i], yBug[i], 15, 15);
-							// }
-
-							//  else if (BugType[i] == 1) {
-							// 	BeeImage.src = "/images/Player/Player.png";
-							// } else if (BugType[i] == 2) {
-							// 	CaterPillarImage.src = "/images/Player/Player.png";
-							// } else if (BugType[i] == 3) {
-							// 	SkaterImage.src = "/images/Player/Player.png";
-							// }
-						
-						console.log(BugType[0] + "" + BugType[1] + "" + BugType[2]);
-						console.log(xBug[0] + "," + yBug[0] + " " + xBug[1] + "," + yBug[1] + " " + xBug[2] + "," + yBug[2]);
 					}
 
 					function GenerateRandomNumber(min, max) {
 						return Math.floor(Math.random() * (max - min)) + min;
 					}
+
+					//Update the databases check to allow the player to move
 
 					function MovementCheck() {
 						if (Player.yLocation <= 55 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 0) {
