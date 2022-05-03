@@ -28,6 +28,7 @@
 					let TimerCheckDown = null;
 					let TimerCheckLeft = null;
 					let TimerCheckRight = null;
+					let Terrain = "";
 
 					let Player = {
 						id: "<%= locals.user._id %>",
@@ -43,18 +44,62 @@
 							Downward: <%= locals.user.player.Movement.Downward %>,
 							Left: <%= locals.user.player.Movement.Left %>,
 							Right: <%= locals.user.player.Movement.Right %>,
+						},
+						Bug: {
+							Dragonfly: <%= locals.user.player.Bug.Dragonfly %>,
+							Beetle: <%= locals.user.player.Bug.Beetle %>,
+							Snail: <%= locals.user.player.Bug.Snail %>,
+							Caterpillar: <%= locals.user.player.Bug.Caterpillar %>,
+							Skater: <%= locals.user.player.Bug.Skater %>,
+							Mosquito: <%= locals.user.player.Bug.Mosquito %>,
+							Antlion: <%= locals.user.player.Bug.Antlion %>,
+							Ant: <%= locals.user.player.Bug.Ant %>,
+							Bee: <%= locals.user.player.Bug.Bee %>,
+							Moth: <%= locals.user.player.Bug.Moth %>,
+							Butterfly: <%= locals.user.player.Bug.Butterfly %>,
+							Wasp: <%= locals.user.player.Bug.Wasp %>,
+							Spider: <%= locals.user.player.Bug.Spider %>,
+							Ladybug: <%= locals.user.player.Bug.Ladybug %>,
+							Walkingstick: <%= locals.user.player.Bug.Walkingstick %>,
+							ScarabBeetle: <%= locals.user.player.Bug.ScarabBeetle %>,
+							StinkBug: <%= locals.user.player.Bug.StinkBug %>,
+							Mantis: <%= locals.user.player.Bug.Mantis %>,
+							FlowerMantisRed: <%= locals.user.player.Bug.FlowerMantisRed %>,
+							FlowerMantisWhite: <%= locals.user.player.Bug.FlowerMantisWhite %>,
+							FlowerMantisYellow: <%= locals.user.player.Bug.FlowerMantisYellow %>,
+							Crawdad: <%= locals.user.player.Bug.Crawdad %>,
+							Termite: <%= locals.user.player.Bug.Termite %>,
+							Cockroach: <%= locals.user.player.Bug.Cockroach %>,
+							Worm: <%= locals.user.player.Bug.Worm %>,
+							Skink: <%= locals.user.player.Bug.Skink %>,
+							Newt: <%= locals.user.player.Bug.Newt %>,
+							Frog: <%= locals.user.player.Bug.Frog %>,
+							Salamander: <%= locals.user.player.Bug.Salamander %>,
+							Turtle: <%= locals.user.player.Bug.Turtle %>,
+							Hummingbird: <%= locals.user.player.Bug.Hummingbird %>,
+							Songbird: <%= locals.user.player.Bug.Songbird %>,
+							TropicalFish: <%= locals.user.player.Bug.TropicalFish %>,
+							Scorpion: <%= locals.user.player.Bug.Scorpion %>,
+							MythicalScarabBeetle: <%= locals.user.player.Bug.MythicalScarabBeetle %>,
+							Amoeba: <%= locals.user.player.Bug.Amoeba %>,
+							LightningBug: <%= locals.user.player.Bug.LightningBug %>,
+							Firefly: <%= locals.user.player.Bug.Firefly %>,
+							Slug: <%= locals.user.player.Bug.Slug %>,
+							JumpingSpider: <%= locals.user.player.Bug.JumpingSpider %>,
+							BronzeMantis: <%= locals.user.player.Bug.BronzeMantis %>,
+							Fly: <%= locals.user.player.Bug.Fly %>,
+							HermitCrab: <%= locals.user.player.Bug.HermitCrab %>,
+							Mudskip: <%= locals.user.player.Bug.Mudskip %>,
+							Lobster: <%= locals.user.player.Bug.Lobster %>,
+							Lizard: <%= locals.user.player.Bug.Lizard %>,
+							Anglerfish: <%= locals.user.player.Bug.Anglerfish %>,
+							Stingray: <%= locals.user.player.Bug.Stingray %>,
+							Millipede: <%= locals.user.player.Bug.Millipede %>
 						}
 					}
 
 					setInterval(FindPlayers, 20);
 					setInterval(UploadPlayer, 20);
-
-					/*
-					Create an array for the players facing right and an array for the players facing left
-					then once both arrays are made, render the right facing players with one image object,
-					then render the left facing players with another, seperate image object
-					*/
-
 
 					window.requestAnimationFrame(GameFrame);
 
@@ -92,7 +137,7 @@
 						PlayerAvatar = new Image();
 						PlayerAvatar.onload = function () {
 							Clear();
-							SummonBugs();
+							//SummonBugs();
 							game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
 							game.font = '12px Arial';
 							game.fillStyle = "black";
@@ -263,6 +308,57 @@
 										Downward: Player.Movement.Downward,
 										Left: Player.Movement.Left,
 										Right: Player.Movement.Right
+									},
+									Bug: {
+										Dragonfly: Player.Bug.Dragonfly,
+										Beetle: Player.Bug.Beetle,
+										Snail: Player.Bug.Snail,
+										Caterpillar: Player.Bug.Caterpillar,
+										Skater: Player.Bug.Skater,
+										Mosquito: Player.Bug.Mosquito,
+										Antlion: Player.Bug.Antlion,
+										Ant: Player.Bug.Ant,
+										Bee: Player.Bug.Bee,
+										Moth: Player.Bug.Moth,
+										Butterfly: Player.Bug.Butterfly,
+										Wasp: Player.Bug.Wasp,
+										Spider: Player.Bug.Spider,
+										Ladybug: Player.Bug.Ladybug,
+										Walkingstick: Player.Bug.Walkingstick,
+										ScarabBeetle: Player.Bug.ScarabBeetle,
+										StinkBug: Player.Bug.StinkBug,
+										Mantis: Player.Bug.Mantis,
+										FlowerMantisRed: Player.Bug.FlowerMantisRed,
+										FlowerMantisWhite: Player.Bug.FlowerMantisWhite,
+										FlowerMantisYellow: Player.Bug.FlowerMantisYellow,
+										Crawdad: Player.Bug.Crawdad,
+										Termite: Player.Bug.Termite,
+										Cockroach: Player.Bug.Cockroach,
+										Worm: Player.Bug.Worm,
+										Skink: Player.Bug.Skink,
+										Newt: Player.Bug.Newt,
+										Frog: Player.Bug.Frog,
+										Salamander: Player.Bug.Salamander,
+										Turtle: Player.Bug.Turtle,
+										Hummingbird: Player.Bug.Hummingbird,
+										Songbird: Player.Bug.Songbird,
+										TropicalFish: Player.Bug.TropicalFish,
+										Scorpion: Player.Bug.Scorpion,
+										MythicalScarabBeetle: Player.Bug.MythicalScarabBeetle,
+										Amoeba: Player.Bug.Amoeba,
+										LightningBug: Player.Bug.LightningBug,
+										Firefly: Player.Bug.Firefly,
+										Slug: Player.Bug.Slug,
+										JumpingSpider: Player.Bug.JumpingSpider,
+										BronzeMantis: Player.Bug.BronzeMantis,
+										Fly: Player.Bug.Fly,
+										HermitCrab: Player.Bug.HermitCrab,
+										Mudskip: Player.Bug.Mudskip,
+										Lobster: Player.Bug.Lobster,
+										Lizard: Player.Bug.Lizard,
+										Anglerfish: Player.Bug.Anglerfish,
+										Stingray: Player.Bug.Stingray,
+										Millipede: Player.Bug.Millipede
 									}
 								},
 								success: function (result) {
@@ -549,7 +645,7 @@
 								game.font = '12px Arial';
 								game.fillStyle = "white";
 
-								game.fillText("Butteryfly", 750, 35 - 5);
+								game.fillText("Butterfly", 750, 35 - 5);
 							}
 
 							Bug.src = "/images/Bugs/Butterfly.png";
@@ -811,7 +907,9 @@
 						return Math.floor(Math.random() * (max - min)) + min;
 					}
 
-					//Update the databases check to allow the player to move
+					function TerrainCheck() {
+
+					}
 
 					function MovementCheck() {
 						if (Player.yLocation <= 55 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 0) {
@@ -820,7 +918,13 @@
 							Player.Movement.Upward = true;
 						}
 
-						if (Player.yLocation >= 685 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 6) {
+						if (
+							(Player.yLocation >= 685 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 6) ||
+							(Player.yLocation >= 600 && ((Player.xScreen == 3 && Player.xLocation >= 1290) || Player.xScreen == 4 || Player.xScreen == 5) && Player.yScreen == 4) ||
+							(Player.yLocation >= 600 && (Player.xLocation <= 1030 || Player.xLocation >= 1330) && Player.xScreen == 6 && Player.yScreen == 4) ||
+							(Player.yLocation >= 630 && (Player.xScreen == 6 || (Player.xScreen == 5 && Player.xLocation >= 1180)) && Player.yScreen == 5) ||
+							(Player.yLocation >= 610 && (Player.xScreen == 4 || (Player.xScreen == 5 && Player.xLocation <= 395)) && Player.yScreen == 5)
+						) {
 							Player.Movement.Downward = false;
 						} else {
 							Player.Movement.Downward = true;
@@ -863,20 +967,25 @@
 								}
 								Player.Direction = "Right";
 						}
-						if (Player.xLocation > 1500) {
-							Player.xLocation -= 1500;
+
+						if (Player.xLocation > 1500 || (Player.xLocation > 1355 && Player.xScreen == 3 && Player.yScreen == 6)) {
+							Player.xLocation = 0;
 							Player.xScreen += 1;
 						}
 						if (Player.xLocation < 0) {
-							Player.xLocation += 1500;
+							if (Player.xScreen == 4 && Player.yScreen == 6) {
+								Player.xLocation = 1260;
+							} else {
+								Player.xLocation = 1500;
+							}
 							Player.xScreen -= 1;
 						}
 						if (Player.yLocation > 750) {
-							Player.yLocation -= 750;
+							Player.yLocation = 0;
 							Player.yScreen += 1;
 						}
 						if (Player.yLocation < 0) {
-							Player.yLocation += 750;
+							Player.yLocation = 750;
 							Player.yScreen -= 1;
 						}
 					}
