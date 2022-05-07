@@ -17,7 +17,6 @@
 				<p id="Bugs"></p>
 
 				<script>
-
 					let time = 0;
 					let game = document.getElementById("WindowsGameSpace").getContext("2d");
 					let PlayerList = [];
@@ -194,7 +193,7 @@
 						document.getElementById("yLocation").innerHTML = Player.yLocation;
 
 						document.getElementById("Line").innerHTML = LinePosition;
-						//document.getElementById("Direction").innerHTML = Player.Direction;
+
 						window.requestAnimationFrame(GameFrame);
 					}
 
@@ -571,7 +570,18 @@
 					}
 
 					function MovementCheck() {
-						if (Player.yLocation <= 55 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 0) {
+						if (Player.yLocation <= 55 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 0 ||
+							Player.yLocation <= 70 && (Player.xScreen == 5 || Player.xScreen == 4) && Player.yScreen == 5 ||
+							Player.yLocation <= 70 && Player.xScreen == 6 && Player.yScreen == 5 && Player.xLocation <= 1030 ||
+							Player.yLocation <= 130 && Player.xScreen == 6 && Player.yScreen == 5 && Player.xLocation >= 1340 ||
+							Player.yLocation <= 125 && Player.xScreen == 5 && Player.yScreen == 6 && (Player.xLocation >= 1150 || Player.xLocation <= 390) ||
+							Player.yLocation <= 320 && Player.xScreen == 5 && Player.yScreen == 6 && Player.xLocation >= 1405 ||
+							Player.yLocation <= 320 && Player.xScreen == 6 && Player.yScreen == 6 && Player.xLocation <= 90 ||
+							Player.yLocation <= 105 && Player.xScreen == 6 && Player.yScreen == 6 ||
+							Player.yLocation <= 445 && Player.xScreen == 3 && Player.yScreen == 6 && Player.xLocation >= 1290 ||
+							Player.yLocation <= 65 && Player.xScreen == 4 && Player.yScreen == 6 ||
+							Player.yLocation <= 435 && Player.xScreen == 4 && Player.yScreen == 6 && Player.xLocation <= 75
+						) {
 							Player.Movement.Upward = false;
 						} else {
 							Player.Movement.Upward = true;
@@ -580,25 +590,50 @@
 						if (
 							(Player.yLocation >= 685 && WallCheck.indexOf(Player.xScreen) != -1 && Player.yScreen == 6) ||
 							(Player.yLocation >= 600 && ((Player.xScreen == 3 && Player.xLocation >= 1290) || Player.xScreen == 4 || Player.xScreen == 5) && Player.yScreen == 4) ||
-							(Player.yLocation >= 600 && (Player.xLocation <= 1030 || Player.xLocation >= 1330) && Player.xScreen == 6 && Player.yScreen == 4) ||
-							(Player.yLocation >= 630 && (Player.xScreen == 6 || (Player.xScreen == 5 && Player.xLocation >= 1180)) && Player.yScreen == 5) ||
-							(Player.yLocation >= 610 && (Player.xScreen == 4 || (Player.xScreen == 5 && Player.xLocation <= 395)) && Player.yScreen == 5) ||
-							(Player.yLocation >= 630 && Player.xLocation >= 1285 && Player.xScreen == 3 && Player.yScreen == 6) ||
+							(Player.yLocation >= 600 && (Player.xLocation <= 1030 || Player.xLocation >= 1340) && Player.xScreen == 6 && Player.yScreen == 4) ||
+							(Player.yLocation >= 630 && (Player.xScreen == 6 || (Player.xScreen == 5 && Player.xLocation >= 1150)) && Player.yScreen == 5) ||
+							(Player.yLocation >= 610 && (Player.xScreen == 4 || (Player.xScreen == 5 && Player.xLocation < 395)) && Player.yScreen == 5) ||
+							(Player.yLocation >= 630 && Player.xLocation >= 1290 && Player.xScreen == 3 && Player.yScreen == 6) ||
 							(Player.yLocation >= 620 && Player.yScreen == 6 && (Player.xScreen == 4 || Player.xScreen == 5)) ||
-							(Player.yLocation >= 650 && Player.yScreen == 6 && Player.xScreen == 6)
+							(Player.yLocation >= 650 && Player.yScreen == 6 && Player.xScreen == 6) ||
+							(Player.yLocation >= 425 && Player.yScreen == 6 && Player.xScreen == 6 && Player.xLocation <= 90) ||
+							(Player.yLocation >= 420 && Player.yScreen == 6 && Player.xScreen == 5 && Player.xLocation >= 1405)
 						) {
 							Player.Movement.Downward = false;
 						} else {
 							Player.Movement.Downward = true;
 						}
 
-						if (Player.xLocation <= 55 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 0) {
+						if (Player.xLocation <= 55 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 0 ||
+							Player.xLocation <= 80 && (Player.xScreen == 4 && Player.yScreen == 6 && Player.yLocation <= 430) ||
+							Player.xLocation <= 105 && (Player.xScreen == 4 && Player.yScreen == 5) ||
+							Player.xLocation <= 395 && Player.xScreen == 5 && Player.yScreen == 5 && Player.yLocation >= 620 ||
+							Player.xLocation <= 125 && Player.xScreen == 5 && Player.yScreen == 6 ||
+							Player.xLocation <= 95 && Player.xScreen == 6 && Player.yScreen == 6 && (Player.yLocation >= 430 || Player.yLocation <= 290) ||
+							Player.xLocation <= 80 && ((Player.xScreen == 2 && Player.yScreen == 2) || (Player.xScreen == 2 && Player.yScreen == 1) || (Player.xScreen == 1 && Player.yScreen == 0)) ||
+							Player.xLocation <= 1035 && Player.xScreen == 6 && Player.yScreen == 5 && Player.yLocation <= 65 ||
+							Player.xLocation <= 1035 && Player.xScreen == 6 && Player.yScreen == 4 && Player.yLocation >= 605 ||
+							Player.xLocation <= 395 && Player.xScreen == 5 && Player.yScreen == 6 && Player.yLocation <= 120
+						) {
 							Player.Movement.Left = false;
 						} else {
 							Player.Movement.Left = true;
 						}
 
-						if (Player.xLocation >= 1450 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 6) {
+						if (Player.xLocation >= 1450 && WallCheck.indexOf(Player.yScreen) != -1 && Player.xScreen == 6 ||
+							Player.xLocation >= 1410 && ((Player.xScreen == 1 && Player.yScreen == 1) || (Player.xScreen == 1 && Player.yScreen == 2)) ||
+							Player.xLocation >= 1285 && Player.xScreen == 3 && Player.yScreen == 4 && Player.yLocation >= 605 ||
+							Player.xLocation >= 1285 && Player.xScreen == 3 && Player.yScreen == 5 ||
+							Player.xLocation >= 1285 && Player.xScreen == 3 && Player.yScreen == 6 && (Player.yLocation <= 435 || Player.yLocation >= 635) ||
+							Player.xLocation >= 1335 && Player.xScreen == 6 && Player.yScreen == 4 && Player.yLocation >= 605 ||
+							Player.xLocation >= 1335 && Player.xScreen == 6 && Player.yScreen == 5 && Player.yLocation <= 125 ||
+							Player.xLocation >= 1430 && Player.xScreen == 6 && Player.yScreen == 5 ||
+							Player.xLocation >= 1145 && Player.xScreen == 5 && Player.yScreen == 5 && Player.yLocation >= 635 ||
+							Player.xLocation >= 1400 && (Player.yLocation >= 425 || Player.yLocation <= 310) && Player.xScreen == 5 && Player.yScreen == 6 ||
+							Player.xLocation >= 1345 && Player.xScreen == 5 && Player.yScreen == 6 && Player.yLocation <= 120 ||
+							Player.xLocation >= 1390 && Player.xScreen == 4 && Player.yScreen == 6 ||
+							Player.xLocation >= 1145 && Player.xScreen == 5 && Player.yScreen == 6 && Player.yLocation <= 120
+						) {
 							Player.Movement.Right = false;
 						} else {
 							Player.Movement.Right = true;
@@ -690,8 +725,6 @@
 								
 								if (LinePosition >= 720 && LinePosition <= 780) {
 									BugsCaught[FocusedBug] = true;
-								} else {
-
 								}
 								GameState = "active";
 								SyncBugs();
@@ -700,7 +733,6 @@
 					});
 
 					$("body").keyup(function (Key) {
-						if (GameState == "active") {
 							if (Key.which == 38) {
 								clearInterval(TimerCheckUp);
 								TimerCheckUp = null;
@@ -716,7 +748,6 @@
 							} else if (Key.which == 90) {
 								//Use();
 							}
-						}
 					});
 
 				</script>
