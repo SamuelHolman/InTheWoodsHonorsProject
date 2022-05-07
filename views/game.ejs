@@ -10,11 +10,11 @@
 				<div id="Windows" class="GameContainer">
 					<canvas id="WindowsGameSpace" width="1500px" height="750px"></canvas>
 				</div>
-				<p><span id="ScreenX"></span>&nbsp&nbsp<span id="ScreenY"></span>&nbsp&nbsp&nbsp&nbspPlayer Count: <span
+				<!-- <p><span id="ScreenX"></span>&nbsp&nbsp<span id="ScreenY"></span>&nbsp&nbsp&nbsp&nbspPlayer Count: <span
 						id="PlayerCount"></span></p>
 				<p><span id="xLocation"></span>&nbsp&nbsp<span id="yLocation"></span>&nbsp&nbsp&nbsp&nbsp<span
 						id="Direction"></span> <span id="Line"></span></p>
-				<p id="Bugs"></p>
+				<p id="Bugs"> <span id="Terrain"></span></p> -->
 
 				<script>
 					let time = 0;
@@ -46,7 +46,7 @@
 					];
 
 					let BugDifficulty = [
-						5, 3, 4, 1, 2, 4, 5, 3, 1, 2, 3, 1, 2, 2, 4, 3, 1, 1, 2, 1, 4, 4, 4, 1, 1, 
+						5, 3, 4, 1, 2, 4, 5, 3, 1, 2, 3, 1, 2, 2, 4, 3, 1, 1, 2, 1, 4, 4, 4, 1, 1,
 						2, 3, 4, 3, 1, 3, 1, 3, 1, 4, 4, 2, 3, 1, 1, 4, 1, 5, 4, 2, 4, 1, 3, 5
 					];
 
@@ -182,23 +182,26 @@
 							LoadPlayer();
 							LoadPlayers();
 							SummonBugs();
+							TerrainCheck();
 						} else if (GameState == "catching") {
 							BugCatching(FocusedBug);
 						}
 
-						document.getElementById("ScreenX").innerHTML = Player.xScreen;
-						document.getElementById("ScreenY").innerHTML = Player.yScreen;
+						// document.getElementById("ScreenX").innerHTML = Player.xScreen;
+						// document.getElementById("ScreenY").innerHTML = Player.yScreen;
 
-						document.getElementById("xLocation").innerHTML = Player.xLocation;
-						document.getElementById("yLocation").innerHTML = Player.yLocation;
+						// document.getElementById("xLocation").innerHTML = Player.xLocation;
+						// document.getElementById("yLocation").innerHTML = Player.yLocation;
 
-						document.getElementById("Line").innerHTML = LinePosition;
+						// document.getElementById("Line").innerHTML = LinePosition;
+
+						// document.getElementById("Terrain").innerHTML = Terrain;
 
 						window.requestAnimationFrame(GameFrame);
 					}
 
 					function LoadPlayers() {
-						document.getElementById("PlayerCount").innerHTML = PlayerList.length;
+						// document.getElementById("PlayerCount").innerHTML = PlayerList.length;
 						for (let i = 0; i < PlayerList.length; i++) {
 							MultiplayerAvatar = new Image();
 							MultiplayerAvatar.onload = function () {
@@ -216,7 +219,6 @@
 						PlayerAvatar = new Image();
 						PlayerAvatar.onload = function () {
 							Clear();
-							//SummonBugs();
 							game.drawImage(PlayerAvatar, Player.xLocation - (52 / 2), Player.yLocation - (75 / 2), 52, 75);
 							game.font = '12px Arial';
 							game.fillStyle = "black";
@@ -228,6 +230,46 @@
 							PlayerAvatar.src = "/images/Player/Player.png";
 						} else if (Player.Direction == "Left") {
 							PlayerAvatar.src = "/images/Player/PlayerLeft.png";
+						}
+
+						if (Terrain == "Flat") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/Player.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerLeft.png";
+							}
+						} else if (Terrain == "Cliff") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/PlayerCliff.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerCliffLeft.png";
+							}
+						} else if (Terrain == "Ice") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/PlayerIce.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerIceLeft.png";
+							}
+						} else if (Terrain == "Shallow") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/PlayerShallow.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerShallowLeft.png";
+							}
+						} else if (Terrain == "Deep") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/PlayerDeep.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerDeepLeft.png";
+							}
+						} else if (Terrain == "Deeper") {
+							if (Player.Direction == "Right") {
+								PlayerAvatar.src = "/images/Player/PlayerDeeper.png";
+							} else if (Player.Direction == "Left") {
+								PlayerAvatar.src = "/images/Player/PlayerDeeperLeft.png";
+							}
+						} else if (Terrain == "Deepest") {
+							PlayerAvatar.src = "/images/Player/PlayerDeepest.png";
 						}
 					}
 
@@ -466,7 +508,7 @@
 								}
 
 								Bug.src = "/images/Bugs/" + BugFileNames[i] + ".png";
-								document.getElementById("Direction").innerHTML = BugXScreens[i] + " : " + BugYScreens[i] + " : " + BugXLocations[i] + " : " + BugYLocations[i] + " : " + BugNames[i] + " : " + BugFileNames[i] + " : " + BugsCaught[i] + " : " + (BugXLocations[i] - 15) + " : " + (BugYLocations[i] - 15) + " : " + (BugXLocations[i] + 65) + " : " + (BugYLocations[i] + 65) + " : " + i;
+								// document.getElementById("Direction").innerHTML = BugXScreens[i] + " : " + BugYScreens[i] + " : " + BugXLocations[i] + " : " + BugYLocations[i] + " : " + BugNames[i] + " : " + BugFileNames[i] + " : " + BugsCaught[i] + " : " + (BugXLocations[i] - 15) + " : " + (BugYLocations[i] - 15) + " : " + (BugXLocations[i] + 65) + " : " + (BugYLocations[i] + 65) + " : " + i;
 								break;
 							}
 						}
@@ -562,7 +604,65 @@
 					}
 
 					function TerrainCheck() {
-
+						if (Player.xScreen == 5 && Player.yScreen == 0 && Player.xLocation >= 310 && Player.xLocation <= 1210 ||
+							(((Player.xLocation - 760) ** 2) + ((Player.yLocation - 150) ** 2) < 495 ** 2) && Player.xScreen == 5 && Player.yScreen == 1 && Player.yLocation <= 560 ||
+							Player.xScreen == 5 && Player.yScreen == 1 && Player.xLocation >= 290 && Player.xLocation <= 1240 && Player.yLocation <= 240
+						) {
+							Terrain = "Cliff";
+							Player.Speed = 1;
+						} else if (
+							Player.xScreen == 4 && Player.yScreen == 5 && Player.xLocation >= 405 && Player.yLocation >= 195 && Player.xLocation <= 895 && Player.yLocation <= 370
+						) {
+							Terrain = "Ice";
+							Player.Speed = 15;
+						} else if (
+							Player.xScreen == 0 && Player.yScreen == 6 && Player.xLocation <= 1435 && Player.yLocation >= 50
+						) {
+							Terrain = "Deepest";
+							Player.Speed = 1;
+						} else if (
+							Player.xScreen == 1 && Player.yScreen == 6 && Player.xLocation <= 155 ||
+							Player.xScreen == 1 && Player.yScreen == 5 && Player.xLocation <= 150 && Player.yLocation >= 625 ||
+							Player.xScreen == 0 && Player.yScreen == 6 ||
+							Player.xScreen == 0 && Player.yScreen == 5 && Player.yLocation >= 625 ||
+							Player.xScreen == 0 && Player.yScreen == 5 && ((Player.xLocation - 870) ** 2 + (Player.yLocation - 375) ** 2 < 80 ** 2 || (Player.xLocation - 1055) ** 2 + (Player.yLocation - 355) ** 2 < 80 ** 2 || Player.xLocation >= 840 && Player.yLocation >= 290 && Player.xLocation <= 1055 && Player.yLocation <= 435)
+						) {
+							Terrain = "Deeper";
+							Player.Speed = 2;
+						} else if (
+							Player.xScreen == 4 && Player.yScreen == 2 && (Player.xLocation - 875) ** 2 + (Player.yLocation - 345) ** 2 < 140 ** 2 ||
+							Player.xScreen == 4 && Player.yScreen == 2 && (Player.xLocation - 710) ** 2 + (Player.yLocation - 330) ** 2 < 120 ** 2 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 960) ** 2 + (Player.yLocation - 310) ** 2 < 80 ** 2 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 880) ** 2 + (Player.yLocation - 335) ** 2 < 80 ** 2 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 1090) ** 2 + (Player.yLocation - 300) ** 2 < 50 ** 2 ||
+							Player.xScreen == 2 && Player.yScreen == 4 && Player.xLocation <= 600 && Player.yLocation >= 515 ||
+							Player.xScreen == 1 && Player.yScreen == 4 && Player.yLocation >= 455 && !(Player.xLocation >= 195 && Player.xLocation <= 440 && Player.yLocation <= 665 || Player.xLocation >= 195 && Player.yLocation <= 655 && Player.xLocation <= 1250 && Player.yLocation >= 485 || Player.xLocation >= 1040 && Player.yLocation <= 585 && Player.xLocation <= 1250 && Player.yLocation <= 670) ||
+							Player.xScreen == 0 && Player.yScreen == 4 && Player.yLocation >= 390 && !(Player.xLocation >= 275 && Player.yLocation >= 450 && Player.xLocation <= 500 || Player.xLocation >= 485 && Player.yLocation >= 450 && Player.xLocation <= 1305 && Player.yLocation <= 670 || Player.xLocation <= 1305 && Player.yLocation <= 575 && Player.xLocation >= 1050 && Player.yLocation >= 315 || Player.xLocation >= 600 && Player.yLocation <= 485 && Player.xLocation <= 795 && Player.yLocation >= 385) ||
+							Player.xScreen == 0 && Player.yScreen == 5 && !(Player.xLocation >= 265 && Player.xLocation <= 500 && Player.yLocation <= 465 || Player.xLocation >= 405 && Player.yLocation <= 465 && Player.xLocation <= 755 && Player.yLocation >= 310 || (Player.xLocation - 800) ** 2 + (Player.yLocation - 365) ** 2 < 160 ** 2 || (Player.xLocation - 1085) ** 2 + (Player.yLocation - 360) ** 2 < 160 ** 2 || Player.xLocation >= 775 && Player.yLocation >= 215 && Player.xLocation <= 1085 && Player.yLocation <= 540) ||
+							Player.xScreen == 2 && Player.yScreen == 5 && Player.xLocation <= 635 && !((Player.xLocation - 200) ** 2 + (Player.yLocation - 145) ** 2 < 75 ** 2 || (Player.xLocation - 345) ** 2 + (Player.yLocation - 475) ** 2 < 75 ** 2) ||
+							Player.xScreen == 2 && Player.yScreen == 6 && ((145 - 625) * (Player.yLocation - 0) - (525 - 0) * (Player.xLocation - 625) > 0 || Player.xLocation <= 145) ||
+							Player.xScreen == 1 && Player.yScreen == 6 && !(Player.xLocation >= 270 && Player.yLocation <= 240 && Player.xLocation <= 600 && Player.yLocation >= 195 || Player.xLocation >= 780 && Player.yLocation <= 535 && Player.xLocation <= 1115 && Player.yLocation >= 505 || Player.xLocation >= 1245 && Player.yLocation <= 325 && Player.xLocation <= 1310 && Player.yLocation >= 155) ||
+							Player.xScreen == 1 && Player.yScreen == 5 && !(Player.xLocation >= 510 && Player.yLocation <= 405 && Player.xLocation <= 1005 && Player.yLocation >= 315)
+						) {
+							Terrain = "Deep";
+							Player.Speed = 2;
+						} else if (
+							Player.xScreen == 4 && Player.yScreen == 2 && (Player.xLocation - 465) ** 2 + (Player.yLocation - 335) ** 2 < 170 ** 2 ||
+							Player.xScreen == 4 && Player.yScreen == 2 && (Player.xLocation - 1115) ** 2 + (Player.yLocation - 365) ** 2 < 170 ** 2 ||
+							Player.xScreen == 4 && Player.yScreen == 2 && Player.xLocation >= 485 && Player.xLocation <= 1045 && Player.yLocation >= 170 && Player.yLocation <= 535 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 970) ** 2 + (Player.yLocation - 290) ** 2 < 130 ** 2 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 1125) ** 2 + (Player.yLocation - 280) ** 2 < 130 ** 2 ||
+							Player.xScreen == 3 && Player.yScreen == 4 && (Player.xLocation - 815) ** 2 + (Player.yLocation - 350) ** 2 < 130 ** 2 ||
+							Player.xScreen == 4 && Player.yScreen == 6 && Player.xLocation >= 890 && Player.xLocation <= 1300 && Player.yLocation >= 115 && Player.yLocation <= 580 ||
+							Player.xScreen == 4 && Player.yScreen == 6 && Player.xLocation >= 215 && Player.xLocation <= 345 && Player.yLocation >= 80 && Player.yLocation <= 340 ||
+							Player.xScreen == 4 && Player.yScreen == 6 && Player.xLocation >= 240 && Player.xLocation <= 945 && Player.yLocation >= 100 && Player.yLocation <= 260
+						) {
+							Terrain = "Shallow";
+							Player.Speed = 3;
+						} else {
+							Terrain = "Flat";
+							Player.Speed = 5;
+						}
 					}
 
 					function Use() {
@@ -722,7 +822,7 @@
 								} else if (BugDifficulty[FocusedBug] == 1) {
 									DifficultyCoefficient = Extreme;
 								}
-								
+
 								if (LinePosition >= 720 && LinePosition <= 780) {
 									BugsCaught[FocusedBug] = true;
 								}
@@ -733,21 +833,21 @@
 					});
 
 					$("body").keyup(function (Key) {
-							if (Key.which == 38) {
-								clearInterval(TimerCheckUp);
-								TimerCheckUp = null;
-							} else if (Key.which == 40) {
-								clearInterval(TimerCheckDown);
-								TimerCheckDown = null;
-							} else if (Key.which == 37) {
-								clearInterval(TimerCheckLeft);
-								TimerCheckLeft = null;
-							} else if (Key.which == 39) {
-								clearInterval(TimerCheckRight);
-								TimerCheckRight = null;
-							} else if (Key.which == 90) {
-								//Use();
-							}
+						if (Key.which == 38) {
+							clearInterval(TimerCheckUp);
+							TimerCheckUp = null;
+						} else if (Key.which == 40) {
+							clearInterval(TimerCheckDown);
+							TimerCheckDown = null;
+						} else if (Key.which == 37) {
+							clearInterval(TimerCheckLeft);
+							TimerCheckLeft = null;
+						} else if (Key.which == 39) {
+							clearInterval(TimerCheckRight);
+							TimerCheckRight = null;
+						} else if (Key.which == 90) {
+							//Use();
+						}
 					});
 
 				</script>
