@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<% include ./partials/header %>
+
+    <body>
+        <% include ./partials/navbar %>
+            <div class="container">
+                <table class="table" id="BugsTable">
+                    <thead>
+                        <tr>
+                            <td>Animal Picture</td>
+                            <td>Animal Name</td>
+                            <td>Animal Location</td>
+                        </tr>
+                    </thead>
+                    <% var x=0; var y=0; var z=0;%>
+                        <% for (let i in players[0].player.Bug) { %>
+                            <% if (players[0].player.Bug[i]) { %>
+                                <tr>
+                                    <td><img src="/images/Bugs/<%= i %>.png" class=".img-border" /></td>
+                                    <td>
+                                        <%= i %>
+                                    </td>
+                                    <td>
+                                        <%= x %>, <%= y %>
+                                    </td>
+                                </tr>
+                                <% } %>
+                                <% y++; %>
+                                    <% if (y==7) { y=0; x++; }%>
+                                        <% if (x==7) { x=0} %>
+                                            
+                                                <% if (i=="Dragonfly" ) { break; }%>
+                                                    <% } %>
+
+                </table>
+            </div>
+            <% include ./partials/scripts %>
+    </body>
+
+</html>

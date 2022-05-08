@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(48, 180, 114) /*!important*/;
+  background-color: rgb(220, 245, 255) !important;
 }
 
 .GameContainer {
@@ -8,6 +8,26 @@ body {
 }
 
 #WindowsGameSpace {
-  border:5px solid #000000;
+  border: 5px solid #000000;
   margin-top: 3%;
+}
+
+.navbar-custom {
+  background-color: rgb(21, 24, 48);
+}
+
+#Title {
+  font-size: 1000%;
+}
+
+#SmallTitle {
+  font-size: 800%;
+}
+
+.img-border {
+  border: 5px solid #000000;
+}
+
+.ImageText {
+  font-size: 25px;
 }

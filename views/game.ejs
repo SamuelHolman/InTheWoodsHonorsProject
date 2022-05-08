@@ -10,6 +10,9 @@
 				<div id="Windows" class="GameContainer">
 					<canvas id="WindowsGameSpace" width="1500px" height="750px"></canvas>
 				</div>
+				<br>
+				<p class="HideP">Press the arrow keys to move and press the Z key to capture bugs <button class="HideB"
+						onclick="HideElements()">Hide</button></p>
 				<!-- <p><span id="ScreenX"></span>&nbsp&nbsp<span id="ScreenY"></span>&nbsp&nbsp&nbsp&nbspPlayer Count: <span
 						id="PlayerCount"></span></p>
 				<p><span id="xLocation"></span>&nbsp&nbsp<span id="yLocation"></span>&nbsp&nbsp&nbsp&nbsp<span
@@ -84,7 +87,7 @@
 					];
 
 					let BugsCaught = [
-						<%= locals.user.player.Bug.Millipede %>, <%= locals.user.player.Bug.Ladybug %>,	<%= locals.user.player.Bug.Hummingbird %>, 
+						<%= locals.user.player.Bug.Millipede %>, <%= locals.user.player.Bug.Ladybug %>,	<%= locals.user.player.Bug.Hum %>, 
 						<%= locals.user.player.Bug.Beetle %>, <%= locals.user.player.Bug.TropicalFish %>, <%= locals.user.player.Bug.Stingray %>,
 						<%= locals.user.player.Bug.Anglerfish %>, <%= locals.user.player.Bug.Mantis %>, <%= locals.user.player.Bug.Songbird %>,
 						<%= locals.user.player.Bug.StinkBug %>, <%= locals.user.player.Bug.FlowerMantisRed %>, <%= locals.user.player.Bug.Fly %>,
@@ -96,7 +99,7 @@
 						<%= locals.user.player.Bug.Skink %>, <%= locals.user.player.Bug.Bee %>, <%= locals.user.player.Bug.Walkingstick %>,
 						<%= locals.user.player.Bug.Skater %>, <%= locals.user.player.Bug.Termite %>, <%= locals.user.player.Bug.Frog %>,
 						<%= locals.user.player.Bug.Amoeba %>, <%= locals.user.player.Bug.Salamander %>, <%= locals.user.player.Bug.Scorpion %>,
-						<%= locals.user.player.Bug.Antlion %>, <%= locals.user.player.Bug.Mudskip %>, <%= locals.user.player.Bug.Turtle %>,
+						<%= locals.user.player.Bug.Antlion %>, <%= locals.user.player.Bug.Mudskipper %>, <%= locals.user.player.Bug.Turtle %>,
 						<%= locals.user.player.Bug.Slug %>, <%= locals.user.player.Bug.Firefly %>, <%= locals.user.player.Bug.Snail %>,
 						<%= locals.user.player.Bug.SacredScarabBeetle %>, <%= locals.user.player.Bug.ScarabBeetle %>,
 						<%= locals.user.player.Bug.FlowerMantisYellow %>, <%= locals.user.player.Bug.LightningBug %>,
@@ -121,7 +124,7 @@
 						Bug: {
 							Millipede: <%= locals.user.player.Bug.Millipede %>,
 							Ladybug: <%= locals.user.player.Bug.Ladybug %>,
-							Hummingbird: <%= locals.user.player.Bug.Hummingbird %>,
+							Hum: <%= locals.user.player.Bug.Hum %>,
 							Beetle: <%= locals.user.player.Bug.Beetle %>,
 							TropicalFish: <%= locals.user.player.Bug.TropicalFish %>,
 							Stingray: <%= locals.user.player.Bug.Stingray %>,
@@ -156,7 +159,7 @@
 							Salamander: <%= locals.user.player.Bug.Salamander %>,
 							Scorpion: <%= locals.user.player.Bug.Scorpion %>,
 							Antlion: <%= locals.user.player.Bug.Antlion %>,
-							Mudskip: <%= locals.user.player.Bug.Mudskip %>,
+							Mudskipper: <%= locals.user.player.Bug.Mudskipper %>,
 							Turtle: <%= locals.user.player.Bug.Turtle %>,
 							Slug: <%= locals.user.player.Bug.Slug %>,
 							Firefly: <%= locals.user.player.Bug.Firefly %>,
@@ -431,55 +434,55 @@
 										Right: Player.Movement.Right
 									},
 									Bug: {
-										Dragonfly: Player.Bug.Dragonfly,
+										Millipede: Player.Bug.Millipede,
+										Ladybug: Player.Bug.Ladybug,
+										Hum: Player.Bug.Hum,
 										Beetle: Player.Bug.Beetle,
-										Snail: Player.Bug.Snail,
-										Caterpillar: Player.Bug.Caterpillar,
-										Skater: Player.Bug.Skater,
-										Mosquito: Player.Bug.Mosquito,
-										Antlion: Player.Bug.Antlion,
-										Ants: Player.Bug.Ants,
-										Bee: Player.Bug.Bee,
-										Moth: Player.Bug.Moth,
-										Butterfly: Player.Bug.Butterfly,
+										TropicalFish: Player.Bug.TropicalFish,
+										Stingray: Player.Bug.Stingray,
+										Anglerfish: Player.Bug.Anglerfish,
+										Mantis: Player.Bug.Mantis,
+										Songbird: Player.Bug.Songbird,
+										StinkBug: Player.Bug.StinkBug,
+										FlowerMantisRed: Player.Bug.FlowerMantisRed,
+										Fly: Player.Bug.Fly,
+										Lobster: Player.Bug.Lobster,
+										Cockroach: Player.Bug.Cockroach,
 										Wasp: Player.Bug.Wasp,
 										Spider: Player.Bug.Spider,
-										Ladybug: Player.Bug.Ladybug,
-										Walkingstick: Player.Bug.Walkingstick,
-										ScarabBeetle: Player.Bug.ScarabBeetle,
-										StinkBug: Player.Bug.StinkBug,
-										Mantis: Player.Bug.Mantis,
-										FlowerMantisRed: Player.Bug.FlowerMantisRed,
+										Ants: Player.Bug.Ants,
 										FlowerMantisWhite: Player.Bug.FlowerMantisWhite,
-										FlowerMantisYellow: Player.Bug.FlowerMantisYellow,
+										Lizard: Player.Bug.Lizard,
 										Crawdad: Player.Bug.Crawdad,
-										Termite: Player.Bug.Termite,
-										Cockroach: Player.Bug.Cockroach,
-										Worm: Player.Bug.Worm,
-										Skink: Player.Bug.Skink,
-										Newt: Player.Bug.Newt,
-										Frog: Player.Bug.Frog,
-										Salamander: Player.Bug.Salamander,
-										Turtle: Player.Bug.Turtle,
-										Hummingbird: Player.Bug.Hummingbird,
-										Songbird: Player.Bug.Songbird,
-										TropicalFish: Player.Bug.TropicalFish,
-										Scorpion: Player.Bug.Scorpion,
-										SacredScarabBeetle: Player.Bug.SacredScarabBeetle,
-										Amoeba: Player.Bug.Amoeba,
-										LightningBug: Player.Bug.LightningBug,
-										Firefly: Player.Bug.Firefly,
-										Slug: Player.Bug.Slug,
+										HermitCrab: Player.Bug.HermitCrab,
 										JumpingSpider: Player.Bug.JumpingSpider,
 										BronzeMantis: Player.Bug.BronzeMantis,
-										Fly: Player.Bug.Fly,
-										HermitCrab: Player.Bug.HermitCrab,
-										Mudskip: Player.Bug.Mudskip,
-										Lobster: Player.Bug.Lobster,
-										Lizard: Player.Bug.Lizard,
-										Anglerfish: Player.Bug.Anglerfish,
-										Stingray: Player.Bug.Stingray,
-										Millipede: Player.Bug.Millipede
+										Caterpillar: Player.Bug.Caterpillar,
+										Butterfly: Player.Bug.Butterfly,
+										Mosquito: Player.Bug.Mosquito,
+										Newt: Player.Bug.Newt,
+										Skink: Player.Bug.Skink,
+										Bee: Player.Bug.Bee,
+										Walkingstick: Player.Bug.Walkingstick,
+										Skater: Player.Bug.Skater,
+										Termite: Player.Bug.Termite,
+										Frog: Player.Bug.Frog,
+										Amoeba: Player.Bug.Amoeba,
+										Salamander: Player.Bug.Salamander,
+										Scorpion: Player.Bug.Scorpion,
+										Antlion: Player.Bug.Antlion,
+										Mudskipper: Player.Bug.Mudskipper,
+										Turtle: Player.Bug.Turtle,
+										Slug: Player.Bug.Slug,
+										Firefly: Player.Bug.Firefly,
+										Snail: Player.Bug.Snail,
+										SacredScarabBeetle: Player.Bug.SacredScarabBeetle,
+										ScarabBeetle: Player.Bug.ScarabBeetle,
+										FlowerMantisYellow: Player.Bug.FlowerMantisYellow,
+										LightningBug: Player.Bug.LightningBug,
+										Worm: Player.Bug.Worm,
+										Moth: Player.Bug.Moth,
+										Dragonfly: Player.Bug.Dragonfly
 									}
 								},
 								success: function (result) {
@@ -493,6 +496,11 @@
 					}
 
 					SummonBugs();
+
+					function HideElements() {
+						$('.HideP').hide();
+						$('.HideB').hide();
+					}
 
 					function SummonBugs() {
 						for (let i = 0; i < 49; i++) {

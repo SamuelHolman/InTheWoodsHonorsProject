@@ -5,9 +5,52 @@
 
     <body>
       <div class="container">
-        <h1>In The Woods</h1>
+        <h1 id="Title">In The Woods</h1>
+        <h2>By: Sam Holman
+          <% if(!locals.user) { %>
+            <a class="btn btnprimary" href="/login">Sign In</a>
+            <a class="btn btnprimary" href="/signup">Sign Up</a>
+            <% } %>
+        </h2>
+        <br>
+        <p>
+          In The Woods is an online multiplayer bug collecting game where players explore an open world and find all 49
+          different types of bugs with varrying difficulties each
+          set in a multitude of the many unique biomes and areas that the game has. Players can watch as other players
+          are exploring the world with them as they all try to finish and collect all 49 different animals.
+          Here are some small snippets from the game.
+        </p>
       </div>
+      <br>
+      <div class="container">
+        <img class="img-border" src="images/Concept/PlayerAndBee.png" />
+        <span class="ImageText">The Player and the Queen Bee</span>
+      </div>
+      <br><br>
+      <div class="container">
+        <img class="img-border" src="images/Concept/PlayerAndTurtle.png" />
+        <span class="ImageText">The Player with a turtle</span>
+      </div>
+      <br><br>
+      <div class="container">
+        <img class="img-border" src="images/Concept/PlayerAndSalamander.png" />
+        <span class="ImageText">The Player and a Salamander</span>
+      </div>
+      <br><br>
+      <div class="container">
+        <p>
+          There are many unique animals in this game. While my art skills are not the best, I hope that the unique
+          style I have will be fun to explore. I put in an estimated 50 hours over the 2022 spring semester to make
+          this. I hope you have as much fun exploring this world as I did making it. The game is not finished, but
+          it is in a state where I am happy with what I have made.
+        </p>
+        <p> - Sam </p>
+      </div>
+
+
+
+
+
     </body>
-    <a class="btn btnprimary" href="/login">Sign In</a>
-    <a class="btn btnprimary" href="/signup">Sign Up</a>
+
 </html>

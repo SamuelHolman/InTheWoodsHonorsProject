@@ -4,6 +4,17 @@ exports.getGameScreen = function (req, res) {
     res.render('game');
 }
 
+exports.getAnimalsScreen = function (req, res) {
+    User.find({ username: req.query.username }, function (err, data) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log(data);
+            res.render('animals', { players: data });
+        }
+    });
+}
+
 exports.putUpdateUserInGame = function (req, res) {
     const updateData = {
         player: {
@@ -21,55 +32,55 @@ exports.putUpdateUserInGame = function (req, res) {
                 Right: req.body.Movement.Right
             },
             Bug: {
-                Dragonfly: req.body.Bug.Dragonfly,
+                Millipede: req.body.Bug.Millipede,
+                Ladybug: req.body.Bug.Ladybug,
+                Hum: req.body.Bug.Hum,
                 Beetle: req.body.Bug.Beetle,
-                Snail: req.body.Bug.Snail,
-                Caterpillar: req.body.Bug.Caterpillar,
-                Skater: req.body.Bug.Skater,
-                Mosquito: req.body.Bug.Mosquito,
-                Antlion: req.body.Bug.Antlion,
-                Ants: req.body.Bug.Ants,
-                Bee: req.body.Bug.Bee,
-                Moth: req.body.Bug.Moth,
-                Butterfly: req.body.Bug.Butterfly,
+                TropicalFish: req.body.Bug.TropicalFish,
+                Stingray: req.body.Bug.Stingray,
+                Anglerfish: req.body.Bug.Anglerfish,
+                Mantis: req.body.Bug.Mantis,
+                Songbird: req.body.Bug.Songbird,
+                StinkBug: req.body.Bug.StinkBug,
+                FlowerMantisRed: req.body.Bug.FlowerMantisRed,
+                Fly: req.body.Bug.Fly,
+                Lobster: req.body.Bug.Lobster,
+                Cockroach: req.body.Bug.Cockroach,
                 Wasp: req.body.Bug.Wasp,
                 Spider: req.body.Bug.Spider,
-                Ladybug: req.body.Bug.Ladybug,
-                Walkingstick: req.body.Bug.Walkingstick,
-                ScarabBeetle: req.body.Bug.ScarabBeetle,
-                StinkBug: req.body.Bug.StinkBug,
-                Mantis: req.body.Bug.Mantis,
-                FlowerMantisRed: req.body.Bug.FlowerMantisRed,
+                Ants: req.body.Bug.Ants,
                 FlowerMantisWhite: req.body.Bug.FlowerMantisWhite,
-                FlowerMantisYellow: req.body.Bug.FlowerMantisYellow,
+                Lizard: req.body.Bug.Lizard,
                 Crawdad: req.body.Bug.Crawdad,
-                Termite: req.body.Bug.Termite,
-                Cockroach: req.body.Bug.Cockroach,
-                Worm: req.body.Bug.Worm,
-                Skink: req.body.Bug.Skink,
-                Newt: req.body.Bug.Newt,
-                Frog: req.body.Bug.Frog,
-                Salamander: req.body.Bug.Salamander,
-                Turtle: req.body.Bug.Turtle,
-                Hummingbird: req.body.Bug.Hummingbird,
-                Songbird: req.body.Bug.Songbird,
-                TropicalFish: req.body.Bug.TropicalFish,
-                Scorpion: req.body.Bug.Scorpion,
-                SacredScarabBeetle: req.body.Bug.SacredScarabBeetle,
-                Amoeba: req.body.Bug.Amoeba,
-                LightningBug: req.body.Bug.LightningBug,
-                Firefly: req.body.Bug.Firefly,
-                Slug: req.body.Bug.Slug,
+                HermitCrab: req.body.Bug.HermitCrab,
                 JumpingSpider: req.body.Bug.JumpingSpider,
                 BronzeMantis: req.body.Bug.BronzeMantis,
-                Fly: req.body.Bug.Fly,
-                HermitCrab: req.body.Bug.HermitCrab,
-                Mudskip: req.body.Bug.Mudskip,
-                Lobster: req.body.Bug.Lobster,
-                Lizard: req.body.Bug.Lizard,
-                Anglerfish: req.body.Bug.Anglerfish,
-                Stingray: req.body.Bug.Stingray,
-                Millipede: req.body.Bug.Millipede
+                Caterpillar: req.body.Bug.Caterpillar,
+                Butterfly: req.body.Bug.Butterfly,
+                Mosquito: req.body.Bug.Mosquito,
+                Newt: req.body.Bug.Newt,
+                Skink: req.body.Bug.Skink,
+                Bee: req.body.Bug.Bee,
+                Walkingstick: req.body.Bug.Walkingstick,
+                Skater: req.body.Bug.Skater,
+                Termite: req.body.Bug.Termite,
+                Frog: req.body.Bug.Frog,
+                Amoeba: req.body.Bug.Amoeba,
+                Salamander: req.body.Bug.Salamander,
+                Scorpion: req.body.Bug.Scorpion,
+                Antlion: req.body.Bug.Antlion,
+                Mudskipper: req.body.Bug.Mudskipper,
+                Turtle: req.body.Bug.Turtle,
+                Slug: req.body.Bug.Slug,
+                Firefly: req.body.Bug.Firefly,
+                Snail: req.body.Bug.Snail,
+                SacredScarabBeetle: req.body.Bug.SacredScarabBeetle,
+                ScarabBeetle: req.body.Bug.ScarabBeetle,
+                FlowerMantisYellow: req.body.Bug.FlowerMantisYellow,
+                LightningBug: req.body.Bug.LightningBug,
+                Worm: req.body.Bug.Worm,
+                Moth: req.body.Bug.Moth,
+                Dragonfly: req.body.Bug.Dragonfly
             }
         }
     };

@@ -4,7 +4,8 @@ const authorizeMiddleware = require('../middleware/authenticate');
 const gameController = require('../controllers/GameController');
 
 /* GET home page. */
-router.get('/', authorizeMiddleware.ensureAuthentication, gameController.getGameScreen); 
+router.get('/', authorizeMiddleware.ensureAuthentication, gameController.getGameScreen);
+router.get('/animals', authorizeMiddleware.ensureAuthentication, gameController.getAnimalsScreen); 
 
 router.get('/renderPlayers', authorizeMiddleware.ensureAuthentication, gameController.getRenderPlayers);
 

@@ -1,7 +1,27 @@
-<h1>
-    <%= message %>
-</h1>
-<h2>
-    <%= error.status %>
-</h2>
-<pre><%= error.stack %></pre>
+<!DOCTYPE html>
+<html>
+<% include ./partials/header %>
+    <% include ./partials/navbar %>
+
+        <body>
+            <div class="container">
+                <br>
+                
+                <% if(error.status==404) { %>
+                    <h1 id="SmallTitle">
+                        <%= message + " - " + error.status%>
+                    </h1>
+                    <p>Sorry about this. If the problem persists, then contact me at samuelhoustonholman@gmail.com</p>
+                    <% } else { %>
+                        <h1>
+                            <%= message %>
+                        </h1>
+                        <h2>
+                            <%= error.status %>
+                        </h2>
+                        <pre><%= error.stack %></pre>
+                    <% } %>
+            </div>
+        </body>
+
+</html>
